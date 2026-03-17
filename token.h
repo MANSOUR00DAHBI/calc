@@ -1,6 +1,7 @@
 //toke.h
 #ifndef H_TOKEN
 #define H_TOKEN
+#include <stdint.h>
 typedef int64_t Word ;
 typedef enum {
     TOK_OPERAND = 0,
