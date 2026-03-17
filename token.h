@@ -18,7 +18,7 @@ typedef enum {
     OP_MOD = '%',
     OP_RPAREN = ')',
     OP_LPAREN = '(',
-    OB_BAD = 11
+    OP_BAD = 11
 }type_token;
 
 typedef enum{

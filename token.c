@@ -25,7 +25,7 @@ char * GetNextToken ( char *input_char , token *tkn){
             val = val * 10 + (*input_char - '0');
             input_char++;
         }
-        tkn->type = TOK_OPEARND;
+        tkn->type = TOK_OPERAND;
         tkn->value = val;
         return input_char;
     }
