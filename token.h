@@ -2,6 +2,10 @@
 #ifndef H_TOKEN
 #define H_TOKEN
 #include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+
 typedef int64_t Word ;
 typedef enum {
     TOK_OPERAND = 0,
@@ -14,7 +18,7 @@ typedef enum {
     OP_MOD = '%',
     OP_RPAREN = ')',
     OP_LPAREN = '(',
-    OB_BAD = 15
+    OB_BAD = 11
 }type_token;
 
 typedef enum{
@@ -24,9 +28,19 @@ typedef enum{
     ERR_DIVIDEBY_ZERO
 }Error_token;
 
-typedef struct toke{
+typedef struct token{
     Word value;
     Word type ;
-}toke;
+}token;
+
+typedef struct operation{
+    char symbol;
+    Word value ;
+    int  precedence_in_stack ;
+    int  precedence_out_stack;
+}operation;
+
+extern operation oplist[];
+char *GetNextToken( char *input_char, token *tkn);
 
 #endif
