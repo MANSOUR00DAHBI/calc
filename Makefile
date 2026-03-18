@@ -10,17 +10,17 @@ calculator: $(OBJ)
 
 # Target File Building Guidelines
 token.o: token.c token.h
-    $(CC) $(CFLAGS) -c token.c
+	$(CC) $(CFLAGS) -c token.c
 
 stock.o: stock.c token.h
-    $(CC) $(CFLAGS) -c stock.c
+	$(CC) $(CFLAGS) -c stock.c
 
 eval.o: eval.c token.h
-    $(CC) $(CFLAGS) -c eval.c
+	$(CC) $(CFLAGS) -c eval.c
 
 calculator.o: calculator.c token.h
-    $(CC) $(CFLAGS) -c calculator.c
+	$(CC) $(CFLAGS) -c calculator.c
 
 #Clearing temporary files
 clean:
-    rm -f *.o calculator
+	rm -f *.o calculator
