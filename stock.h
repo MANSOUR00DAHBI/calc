@@ -5,7 +5,7 @@
 typedef int64_t Item;
 
 typedef struct Stack{
-    Item *contents;
+    Item *contentes;
     Item top;
     Item size;
 }Stack;
