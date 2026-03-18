@@ -1,6 +1,28 @@
 // eval.c
 #include "token.h"
 #include "stock.h"
+int tokenize(char *expr, token tokens[], int max_tokens) {
+    int count = 0;
+    char *p = expr;
+
+    while (*p != '\0' && count < max_tokens) {
+        token t;
+        p = GetNextToken(p, &t);
+
+        if (t.type == OP_BAD) {
+           
+            if (isspace(*p) || t.value == 0) {
+                continue;
+            }
+            printf("Error: invalid code '%c'\n", *p);
+            return -1;
+        }
+
+        tokens[count++] = t;
+    }
+
+    return count; 
+}
 
 // Function to determine process priority
 int precedence(type_token op) {
