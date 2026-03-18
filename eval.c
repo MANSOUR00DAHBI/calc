@@ -1,6 +1,5 @@
 // eval.c
-#include "token.h"
-#include "stock.h"
+#include "eval.h"
 int tokenize(char *expr, token tokens[], int max_tokens) {
     int count = 0;
     char *p = expr;
