@@ -57,7 +57,7 @@ Item peek(Stack *s){
 // Reallacate the stack when it's full
 static void reallocate(Stack *stack){
     stack->size *= 2;
-    stack->contentes = realloc(stack->contents,stack->size * sizeof(Item));
+    stack->contentes = realloc(stack->contentes,stack->size * sizeof(Item));
     if(!stack->contentes){
         fprintf(stderr,"Error : Memory reallocation failed\n");
     } 
