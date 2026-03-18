@@ -1,10 +1,6 @@
 //main.c 
 // calculator.c
-#include "token.h"
-
-
-int tokenize(char *expr, token tokens[], int max_tokens);
-Word evaluate(token tokens[], int n);
+#include "eval.h"
 
 int main() {
     char expr[256];
