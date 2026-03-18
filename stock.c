@@ -6,7 +6,7 @@
         fprintf(stderr,"Error : Failied to create the stock \n");
         exit(EXIT_FAILURE);
     }
-    s->contents = malloc(initial_size * sizeof(Item));
+    s->contentes = malloc(initial_size * sizeof(Item));
     if(!s->contentes){
         fprintf(stderr, "Error : Memory allocation failed \n");
         exit(EXIT_FAILURE);
@@ -56,9 +56,9 @@ Item peek(Stack *s){
  }
 // Reallacate the stack when it's full
 static void reallocate(Stack *stack){
-    s->size *= 2;
-    s->contentes = realloc(s->contents,s->size * sizeof(Item));
-    if(!s->contentes){
+    stack->size *= 2;
+    stack->contentes = realloc(stack->contents,stack->size * sizeof(Item));
+    if(!stack->contentes){
         fprintf(stderr,"Error : Memory reallocation failed\n");
     } 
 }
