@@ -42,42 +42,37 @@ Word apply_op(Word a, Word b, type_token op)
 }
 
 // Evaluate a complete expression using the stack
-Word evaluate(token tokens[], int n) {
-    Stack *values = create_Stack(20);
-    Stack *ops = create_Stack(20);
+Word evaluate(token tokens[], int n)
+{
+    Stack *values = create_Stack(50); // تأكد أن الاسم مطابق لتعريفك
+    Stack *ops = create_Stack(50);
 
-    for (int i = 0; i < n; i++) {
-        if (tokens[i].type == TOK_OPERAND) {
+    for (int i = 0; i < n; i++)
+    {
+        if (tokens[i].type == TOK_OPERAND)
+        {
             push(values, tokens[i].value);
-        } else if (tokens[i].type == OP_LPAREN) {
+        }
+        else if (tokens[i].type == OP_LPAREN)
+        {
             push(ops, tokens[i].type);
-        } else if (tokens[i].type == OP_RPAREN) {
-            while (!is_empty(ops) && peek(ops) != OP_LPAREN) {
-                if (is_empty(values)) {
-                    fprintf(stderr, "Error: missing operand\n");
-                    return 0;
-                }
+        }
+        else if (tokens[i].type == OP_RPAREN)
+        {
+            while (!is_empty(ops) && peek(ops) != OP_LPAREN)
+            {
                 Word val2 = pop(values);
-                if (is_empty(values)) {
-                    fprintf(stderr, "Error: missing operand\n");
-                    return 0;
-                }
                 Word val1 = pop(values);
                 type_token op = pop(ops);
                 push(values, apply_op(val1, val2, op));
             }
-            if (!is_empty(ops)) pop(ops);
-        } else {
-            while (!is_empty(ops) && precedence(peek(ops)) >= precedence(tokens[i].type)) {
-                if (is_empty(values)) {
-                    fprintf(stderr, "Error: missing operand\n");
-                    return 0;
-                }
+            pop(ops); // إزالة '('
+        }
+        else
+        {
+            while (!is_empty(ops) && precedence(peek(ops)) >= precedence(tokens[i].type))
+            {
                 Word val2 = pop(values);
-                if (is_empty(values)) {
-                    fprintf(stderr, "Error: missing operand\n");
-                    return 0;
-                }
                 Word val1 = pop(values);
                 type_token op = pop(ops);
                 push(values, apply_op(val1, val2, op));
@@ -86,31 +81,19 @@ Word evaluate(token tokens[], int n) {
         }
     }
 
-    while (!is_empty(ops)) {
-        if (is_empty(values)) {
-            fprintf(stderr, "Error: missing operand\n");
-            return 0;
-        }
+    // تنفيذ العمليات المتبقية
+    while (!is_empty(ops))
+    {
         Word val2 = pop(values);
-        if (is_empty(values)) {
-            fprintf(stderr, "Error: missing operand\n");
-            return 0;
-        }
         Word val1 = pop(values);
         type_token op = pop(ops);
-          Word res = apply_op(val1, val2, op);
-        push(values, res);
+        push(values, apply_op(val1, val2, op));
     }
-if (is_empty(values)) {
-    fprintf(stderr, "Error: no result (values stack empty)\n");
-    return 0;
-}
-Word result = pop(values);
-// If other elements remain in the stack, this indicates a parsing error.
-if (!is_empty(values)) {
-    fprintf(stderr, "Error: extra operands remain\n");
-    return 0;
-}
-return result;
 
+    if (is_empty(values))
+    {
+        fprintf(stderr, "Error: no result\n");
+        return 0;
+    }
+    return pop(values);
 }

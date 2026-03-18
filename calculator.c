@@ -5,6 +5,8 @@
 int main()
 {
     char expr[256];
+
+
     printf("Enter the mathematical expression: ");
     if (!fgets(expr, sizeof(expr), stdin))
     {

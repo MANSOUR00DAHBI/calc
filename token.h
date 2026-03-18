@@ -31,18 +31,19 @@ typedef enum{
 }Error_token;
 
 typedef struct token{
-    Word value;
-    Word type ;
+    double value;
+    type_token type ;
 }token;
 
 typedef struct operation{
     char symbol;
-    Word value ;
+    double value ;
     int  precedence_in_stack ;
     int  precedence_out_stack;
 }operation;
 
 extern operation oplist[];
 char *GetNextToken( char *input_char, token *tkn);
+double read_number(char **p);
 
 #endif

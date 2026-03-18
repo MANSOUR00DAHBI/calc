@@ -6,7 +6,7 @@
         fprintf(stderr,"Error : Failied to create the stock \n");
         exit(EXIT_FAILURE);
     }
-    s->contentes = malloc(initial_size * sizeof(Item));
+    s->contentes = malloc(sizeof(Word)* initial_size);
     if(!s->contentes){
         fprintf(stderr, "Error : Memory allocation failed \n");
         exit(EXIT_FAILURE);
@@ -22,7 +22,7 @@
  }
 // is the Stack empty 
 bool is_empty(Stack *s){
-    return s->top = -1;
+    return s->top == -1;
 }
 // Is the Stack full
 bool is_full(Stack *s){
@@ -30,22 +30,25 @@ bool is_full(Stack *s){
 }
 // add element
 void push(Stack *s, Item item){
-    if(is_full(s)){
-        reallocate(s);
+    if(s->top == s->contentes - 1){
+          printf("Stack overflow\n");
+        return 0;
     }
     s->contentes[++s->top]= item;
 }
 // Remove Element 
 Item pop(Stack *s){
-    if(is_empty(s)){
-        stack_underflow();
+    if(s->top == -1){
+        printf("Stack is Vide\n");
+        return 0;
     }
-    return s->contentes[s->top -1];
+    return s->contentes[s->top--];
 }
 // View the top item 
 Item peek(Stack *s){
-    if(is_empty(s)){
-        stack_underflow();
+ if (s->top == -1) {
+        fprintf(stderr, "Stack is Vide\n");
+        return 0;
     }
     return s->contentes[s->top];
 }
