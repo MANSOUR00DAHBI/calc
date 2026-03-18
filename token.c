@@ -63,7 +63,7 @@ int tokenize(char *expr, token tokens[], int max_tokens) {
 
     return count; // count number useing
 }
-#define TEST_STOCK
+//#define TEST_STOCK
 #ifdef TEST_STOCK
 int main() {
     char expr[] = "12+3*4";
