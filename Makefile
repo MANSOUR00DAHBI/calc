@@ -1,12 +1,12 @@
 # Makefile Projecte Calculator
-
-CC = gcc
-CFLAGS = -Wall -Wextra -std=c11
-OBJ = token.o stock.o eval.o calculator.o
+.PHONY: calculator
+CC= gcc
+CFLAGS= -Wall -Wextra -std=c11
+OBJ= token.o stock.o eval.o calculator.o
 
 #Main objective
 calculator: $(OBJ)
-    $(CC) $(CFLAGS) -o calculator $(OBJ)
+	$(CC) $(CFLAGS) -o calculator $(OBJ)
 
 # Target File Building Guidelines
 token.o: token.c token.h
