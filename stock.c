@@ -1,6 +1,6 @@
  #include "stock.h"
 
- Stack *create_stack(Item initial_size){
+ Stack *create_Stack(Item initial_size){
     Stack *s = malloc(sizeof(Stack));
     if(!s){
         fprintf(stderr,"Error : Failied to create the stock \n");
