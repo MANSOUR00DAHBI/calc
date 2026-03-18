@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include<stdbool>
+#include<stdbool.h>
 #include <math.h>
 
 typedef int64_t Word ;
