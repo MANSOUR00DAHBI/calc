@@ -29,8 +29,8 @@ Word apply_op(Word a, Word b, type_token op) {
 
 // Evaluate a complete expression using the stack
 Word evaluate(token tokens[], int n) {
-    Stack *values = create_stack(20);   // Number stack
-    Stack *ops = create_stack(20);      // Stack of operations
+    Stack *values = create_Stack(20);   // Number stack
+    Stack *ops = create_Stack(20);      // Stack of operations
 
     for (int i = 0; i < n; i++) {
         if (tokens[i].type == TOK_OPERAND) {
