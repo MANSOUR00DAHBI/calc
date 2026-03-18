@@ -1,5 +1,6 @@
 // eval.c
 #include "token.h"
+#include "stock.h"
 
 // Function to determine process priority
 int precedence(type_token op) {
