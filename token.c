@@ -1,4 +1,4 @@
-#include "token.h"
+#include "stock.h"
 
 struct operation oplist[] = {
     { '+', OP_PLUS,     2, 1 },
@@ -52,24 +52,44 @@ int tokenize(char *expr, token tokens[], int max_tokens) {
     while (*p != '\0' && count < max_tokens) {
         token t;
         p = GetNextToken(p, &t);
+// If we reach the end of the text
+        if (*p == '\0' && t.type == OP_BAD) {
+            break;
+        }
 
+       // If the code is invalid, we ignore it if it is a space or empty.
         if (t.type == OP_BAD) {
-            printf("Error: invlide code '%c'\n", *p);
+            if (isspace(*p) || t.value == 0) {
+                continue; // Ignore Space 
+            }
+            printf("Error: invalid code '%c'\n", *p);
             return -1;
         }
 
         tokens[count++] = t;
     }
 
-    return count; // count number useing
+    return count;
 }
+
+
 //#define TEST_STOCK
 #ifdef TEST_STOCK
 int main() {
-    char expr[] = "12+3*4";
-    token tokens[20];
-    int n = tokenize(expr, tokens, 20);
+ char expr[256];
+    printf("Enter the mathematical expression: ");
+    if (!fgets(expr, sizeof(expr), stdin)) {
+        printf("Input error\n");
+        return 1;
+    }
 
+    token tokens[100];
+    int n = tokenize(expr, tokens, 100);
+    if (n < 0) {
+        printf("Failed to parse the expression\n");
+        return 1;
+    }
+// Print the codes to verify the analysis
     for (int i = 0; i < n; i++) {
         if (tokens[i].type == TOK_OPERAND) {
             printf("number: %lld\n", (long long)tokens[i].value);
@@ -77,6 +97,7 @@ int main() {
             printf("operation: '%c'\n", (char)tokens[i].type);
         }
     }
+
     return 0;
 }
 #endif

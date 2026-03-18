@@ -1,5 +1,5 @@
 # Makefile Projecte Calculator
-.PHONY: cal
+.PHONY: cal clean
 CC= gcc
 CFLAGS= -Wall -Wextra -std=c11
 OBJ= token.o stock.o eval.o calculator.o
@@ -23,4 +23,4 @@ calculator.o: calculator.c token.h
 
 #Clearing temporary files
 clean:
-	rm -f *.o calculator
+	rm -f *.o cal
