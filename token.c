@@ -106,10 +106,8 @@ int tokenize(char *expr, token tokens[], int max_tokens)
 {
     int count = 0;
     char *p = expr;
-
     while (*p != '\0' && count < max_tokens)
     {
-        // تخطي المسافات
         if (isspace(*p))
         {
             p++;
@@ -122,12 +120,10 @@ int tokenize(char *expr, token tokens[], int max_tokens)
             count++;
             continue;
         }
-
         if (*p == '-')
         {
             if (count == 0 || tokens[count - 1].type == OP_LPAREN)
             {
-
                 p++;
                 int val = 0;
                 while (isdigit(*p))
@@ -142,7 +138,6 @@ int tokenize(char *expr, token tokens[], int max_tokens)
             }
             else
             {
-
                 tokens[count].type = OP_MINUS;
                 tokens[count].value = 0;
                 count++;
@@ -150,23 +145,19 @@ int tokenize(char *expr, token tokens[], int max_tokens)
                 continue;
             }
         }
-
         token t;
         p = GetNextToken(p, &t);
         if (tokens[count].type == TOK_OPERAND)
         {
             printf("number: %.2f\n", tokens[count].value);
         }
-
         if (t.type == OP_BAD)
         {
             printf("Error: invalid code '%c'\n", *p);
             return -1;
         }
-
         tokens[count++] = t;
     }
-
     return count;
 }
 
@@ -181,7 +172,6 @@ int main()
         printf("Input error\n");
         return 1;
     }
-
     token tokens[100];
     int n = tokenize(expr, tokens, 100);
     if (n < 0)
@@ -201,7 +191,6 @@ int main()
             printf("operation: '%c'\n", (char)tokens[i].type);
         }
     }
-
     return 0;
 }
 #endif

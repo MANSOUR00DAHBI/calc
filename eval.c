@@ -44,7 +44,7 @@ Word apply_op(Word a, Word b, type_token op)
 // Evaluate a complete expression using the stack
 Word evaluate(token tokens[], int n)
 {
-    Stack *values = create_Stack(50); // تأكد أن الاسم مطابق لتعريفك
+    Stack *values = create_Stack(50);
     Stack *ops = create_Stack(50);
 
     for (int i = 0; i < n; i++)
@@ -66,7 +66,7 @@ Word evaluate(token tokens[], int n)
                 type_token op = pop(ops);
                 push(values, apply_op(val1, val2, op));
             }
-            pop(ops); // إزالة '('
+            pop(ops);
         }
         else
         {
@@ -80,8 +80,7 @@ Word evaluate(token tokens[], int n)
             push(ops, tokens[i].type);
         }
     }
-
-    // تنفيذ العمليات المتبقية
+    
     while (!is_empty(ops))
     {
         Word val2 = pop(values);
