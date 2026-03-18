@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include<stdbool>
+#include <math.h>
 
 typedef int64_t Word ;
 typedef enum {
