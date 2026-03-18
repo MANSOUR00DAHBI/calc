@@ -33,7 +33,7 @@ void push(Stack *s, Item item){
     if(is_full(s)){
         reallocate(s);
     }
-    s->contentes[++s->top]= i;
+    s->contentes[++s->top]= item;
 }
 // Remove Element 
 Item pop(Stack *s){
